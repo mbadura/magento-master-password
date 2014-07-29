@@ -1,0 +1,21 @@
+<?php
+
+if(Mage::getStoreConfig('master_password/master_password_config/mp_enable')==1) {
+
+$enabled = $this->getRequest()->getParam('secure');
+$cookie = Mage::getModel('core/cookie')->get('masterpassword_coockie_access');
+
+if( $cookie != 'enabled') {
+    ?>
+
+    <div class="loginbox">
+        <div class="container">
+            <img src="<?php echo $this->getSkinUrl('images/white_logo.png') ?>">
+            <form id="masterPassword" method="post" action="<?php echo $this->getUrl('masterpassword/index/enable/') ?>">
+                <p><input type="password" name="password" placeholder="<?php echo $this->__('Type password here'); ?>" /></p>
+                <button style="display: none;">Check</button>
+            </form>
+        </div>
+    </div>
+
+<?php } } ?>

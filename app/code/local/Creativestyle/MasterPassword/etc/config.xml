@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Creativestyle_MasterPassword>
+      <version>0.1.0</version>
+    </Creativestyle_MasterPassword>
+  </modules>
+  <global>
+    <helpers>
+      <masterpassword>
+        <class>Creativestyle_MasterPassword_Helper</class>
+      </masterpassword>
+    </helpers>
+	<models>
+	  <masterpassword>
+		<class>Creativestyle_MasterPassword_Model</class>
+		<resourceModel>masterpassword_mysql4</resourceModel>
+	  </masterpassword>
+	</models>
+
+  </global>
+
+    <frontend>
+
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <firsteventever>
+                        <class>Creativestyle_MasterPassword_Model_Observer</class>
+                        <method>checkCookie</method>
+                    </firsteventever>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+
+        <routers>
+            <masterpassword>
+                <use>standard</use>
+                <args>
+                    <module>Creativestyle_MasterPassword</module>
+                    <frontName>masterpassword</frontName>
+                </args>
+            </masterpassword>
+        </routers>
+
+        <layout>
+            <updates>
+                <masterpassword>
+                    <file>cs_masterpassword.xml</file>
+                </masterpassword>
+            </updates>
+        </layout>
+
+    </frontend>
+
+</config>
